@@ -23,6 +23,9 @@ def all_script_tags(soup):
 def write_output(list):
     print('\n'.join('{}:{}'.format(*k) for k in enumerate(list)))
 
+
+#TODO: this sets that HREF to a RELATIVE PATH so we need to figure out a way to get a file's relative path
+#to the location the original file is in.
 def update_href(old_href, new_href):
     href_list = top_menu_buttons(soup)
     for item in href_list:
@@ -32,24 +35,38 @@ def update_href(old_href, new_href):
             break
     return
 
+
+def find_all_tables(soup):
+    return soup.find_all(find_tables)
+
+
+def find_tables(tag):
+    return tag.name == "table"
+
+
+def return_table_contents_by_id(soup, table_id):
+    table_list = find_all_tables(soup)
+    table_contents = []
+    for item in table_list:
+        if(item['id']==table_id):
+            table_contents = item.find_all("tr")
+    return table_contents
+
 my_file = open("Index.html",'r')
 
 soup = BeautifulSoup(my_file, 'html.parser')
 
-href_list = top_menu_buttons(soup)
-for item in href_list:
-    new_href = input("Write a new href ")
-    update_href(item['href'],new_href)
+table_list = find_all_tables(soup)
+
+#this returns a list of content tags for each table! yay :)
+for item in table_list:
+    print("This is a new table with the id " + item['id']) #this works
+    print("The items in this table are %s " % return_table_contents_by_id(soup,item['id']))
+
+# output_string = soup.prettify()
+# with open("New_Index.html", "w+") as output_file:
+#     output_file.write(output_string)
+#     output_file.close()
+my_file.close()
 
 
-print(*href_list, sep="\n")
-
-# write_output(blank_buttons)
-
-# blank_buttons[4].extract()
-
-
-# new_file_string = soup.prettify()
-# with open("New_Index.html", 'w+') as my_new_file:
-#     my_new_file.write(new_file_string)
-#     my_new_file.close()
