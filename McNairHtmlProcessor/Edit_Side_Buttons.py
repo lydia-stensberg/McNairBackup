@@ -4,18 +4,6 @@ from tkinter import filedialog
 import soupaccessories
 from bs4 import BeautifulSoup
 
-def get_side_buttons():
-    root = tkinter.Tk()
-    root.withdraw()
-    file_path = filedialog.askopenfilename()
-    file = soupaccessories.open_with_filepath(file_path)
-    soup = BeautifulSoup(file, "html.parser")
-    side_button_names = []
-    side_buttons = soupaccessories.side_menu_buttons(soup)
-    for button in side_buttons:
-        side_button_names.append(button.string)
-    return {'Side Button Names': side_button_names,'Side Buttons': side_buttons}
-
 def change_button_text(soup, old_button_text):
     buttons = soupaccessories.find_button_by_tag(soup, old_button_text)
     if (buttons.count>1):
@@ -24,7 +12,7 @@ def change_button_text(soup, old_button_text):
 
 @Gooey(show_sidebar = True, navigation='SIDEBAR',navigation_title='Choose an Action')
 def main():
-    buttons = get_side_buttons()
+    buttons = soupaccessories.get_side_buttons()
     desc_message = "Choose a Button Option: " + str(buttons['Side Button Names'])
     main_parser = GooeyParser(description=desc_message)
     subparsers = main_parser.add_subparsers()
@@ -47,6 +35,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 

@@ -26,7 +26,7 @@ def gooey_routine(buttons):
     #parse arguments from user
     args = main_parser.parse_args()
 
-    return
+
 
 # def get_top_buttons():
 #     root = tkinter.Tk()
