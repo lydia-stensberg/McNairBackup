@@ -23,16 +23,26 @@ def all_script_tags(soup):
 def write_output(list):
     print('\n'.join('{}:{}'.format(*k) for k in enumerate(list)))
 
+def update_href(old_href, new_href):
+    href_list = top_menu_buttons(soup)
+    for item in href_list:
+        if (item['href']==old_href):
+            item['href'] = new_href
+            print(old_href + " has been set to " + new_href + " for button " + item.string)
+            break
+    return
 
 my_file = open("Index.html",'r')
 
 soup = BeautifulSoup(my_file, 'html.parser')
 
-href_list = soup.find_all(href=has_file)
+href_list = top_menu_buttons(soup)
+for item in href_list:
+    new_href = input("Write a new href ")
+    update_href(item['href'],new_href)
 
-script_list = all_script_tags(soup)
 
-print(*top_menu_buttons(soup), sep="\n")
+print(*href_list, sep="\n")
 
 # write_output(blank_buttons)
 
