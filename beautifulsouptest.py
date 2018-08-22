@@ -35,6 +35,7 @@ def update_href(old_href, new_href):
             break
     return
 
+#TODO: Method that will get images out of a project
 
 def find_all_tables(soup):
     return soup.find_all(find_tables)
