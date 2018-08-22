@@ -9,29 +9,48 @@ import tkinteraccessories
 #singleton class to control the soup
 class Soup_Handler:
     class _SingleSoup:
-        def __init__(self,arg):
-            self.soup = arg
+        def __init__(self,soup,file):
+            self.soup = soup
+            self.file = file
         def __str__(self):
             return repr(self) + self.soup
-        def override(self,arg):
-            self.soup = arg
+        def override(self,soup,file):
+            self.soup = soup
+            self.file = file
+    #object to represent soup instance! should only be one! should I add a file to the internal class?
     instance=None
+    #objects to represent the open files. Mainly stored so that we have access to the file paths.
+    comparative_file = None
     def __init__(self):
         if not Soup_Handler.instance:
             file = filedialog.askopenfile(mode="r")
             soup = BeautifulSoup(file,'html.parser')
-            Soup_Handler.instance = Soup_Handler._SingleSoup(soup)
+            Soup_Handler.instance = Soup_Handler._SingleSoup(soup,file)
         else:
             if (tkinteraccessories.are_you_sure()=='yes'):
                 file = filedialog.askopenfile(mode="r")
                 soup = BeautifulSoup(file, 'html.parser')
-                Soup_Handler.instance.override(soup)
+                Soup_Handler.instance.override(soup,file)
             else:
                 messagebox.showerror("New File Canceled", "No new file will be loaded.")
+
 
     def __getattr__(self, item):
         return getattr(self,item)
 
+
+    def open_comparative_file(self):
+        if not Soup_Handler.comparative_file:
+            file = filedialog.askopenfile(mode="r")
+            soup = BeautifulSoup(file, 'html.parser')
+            Soup_Handler.comparative_file = Soup_Handler._SingleSoup(soup, file)
+        else:
+            if (tkinteraccessories.are_you_sure() == 'yes'):
+                file = filedialog.askopenfile(mode="r")
+                soup = BeautifulSoup(file, 'html.parser')
+                Soup_Handler.comparative_file.override(soup, file)
+            else:
+                messagebox.showerror("New File Canceled", "No new file will be loaded.")
 
     def open_existing_file(self):
         return filedialog.askopenfile()
@@ -124,6 +143,20 @@ class Soup_Handler:
 
     def clear_all_soup(self):
         pass
+
+    def write_output(self,override_filepath=False):
+        output_string = self.instance.soup.prettify()
+        if not override_filepath:
+            with filedialog.asksaveasfile("w+") as new_file:
+                new_file.write(output_string)
+                new_file.close()
+        else:
+            with open(self.instance.file,"w+") as file:
+                file.write(output_string)
+                file.close()
+
+
+
 
 
 def get_blanks(tag):

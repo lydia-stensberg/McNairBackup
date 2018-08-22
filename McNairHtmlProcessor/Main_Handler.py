@@ -1,16 +1,50 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 import soupaccessories
-import tkinteraccessories
+import Error_Handler
+
+"""General Notes"""
+"""No error-handling takes place in this file. All error-handling happens in underlying methods."""
+
+
+#Set up interface root and frame
+root = tk.Tk(className="McNair HTML Editor")
+root.title = "McNair HTML Editor"
+frame = tk.Frame(root)
+frame.grid()
+welcome_message = "Please use the File Menu to load in the HTML file you'd \n" \
+                  "like to change first, then select a command."
+tk.Label(root, text=welcome_message).grid(row=0,columnspan=2)
+
+
+base_soup = None
 
 #Button Methods
 def print_hello(): print("Hello! Button Clicked!")
 
 def write_slogan(): print("Writing a slogan!")
 
-def mycommand():
+def load_comparative_file():
+    global base_soup
+    if base_soup is not None:
+        base_soup.open_comparative_file()
+    else:
+        pass
+
+def write_output(overwite=False):
+    global base_soup
+    if base_soup is not None:
+        base_soup.write_output(overwite)
+    else:
+        pass
+
+def initialize_soup():
+    global base_soup
     base_soup = soupaccessories.Soup_Handler()
     print("Chosen.")
+
+
 
 #Method to add identical buttons to the top and side button frames
 def add_required_buttons(tkinter_frame):
@@ -34,14 +68,7 @@ def add_required_buttons(tkinter_frame):
     return
 
 
-#Set up interface root and frame
-root = tk.Tk()
-root.title = "McNair HTML Editor"
-frame = tk.Frame(root)
-frame.grid()
-welcome_message = "Please use the File Menu to load in the HTML file you'd \n" \
-                  "like to change first, then select a command."
-tk.Label(root, text=welcome_message).grid(row=0,columnspan=2)
+
 
 
 #Set up notebooks for top menu buttons, side menu buttons, and Images on page
@@ -52,13 +79,11 @@ notebook.add(top_button_frame, text='Edit Top Buttons')
 notebook.add(side_button_frame, text='Edit Side Buttons')
 notebook.grid()
 
-
 #Setting up top button frame notebook
 tk.Label(top_button_frame, text="Enter New Top Button Name").grid(row=1)
 new_button_name = tk.StringVar()
 new_button_entry = tk.Entry(top_button_frame, textvariable=new_button_name)
 new_button_entry.grid(row=1, column=1)
-
 
 #Setting up side button frame notebook
 tk.Label(side_button_frame, text="Enter New Side Button Name").grid(row=2)
@@ -78,17 +103,17 @@ add_required_buttons(top_button_frame)
 menu_bar = tk.Menu(root)
 
 top_button_menu = tk.Menu(menu_bar, tearoff=0)
-top_button_menu.add_command(label="Load Existing File", command=mycommand)
-top_button_menu.add_command(label="Save New File", command=mycommand)
-top_button_menu.add_command(label="Overwrite Existing File", command=mycommand)
+top_button_menu.add_command(label="Load Existing File", command=initialize_soup)
+top_button_menu.add_command(label="Save New File", command=write_output(True))
+top_button_menu.add_command(label="Overwrite Existing File", command=write_output(True))
 top_button_menu.add_separator()
 top_button_menu.add_command(label="Reset Program", command=root.quit)
 menu_bar.add_cascade(label="File Menu", menu=top_button_menu)
 
 #Use to load second file to compare to first file.
 side_button_menu = tk.Menu(menu_bar, tearoff=0)
-side_button_menu.add_command(label="Load New File", command=tkinteraccessories.are_you_sure)
-side_button_menu.add_command(label="Rectangle", command=mycommand)
+side_button_menu.add_command(label="Load New File", command=load_comparative_file)
+side_button_menu.add_command(label="Rectangle", command=print_hello)
 menu_bar.add_cascade(label="Compare Loaded File to New File", menu=side_button_menu)
 
 root.config(menu=menu_bar)

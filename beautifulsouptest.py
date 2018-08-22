@@ -66,8 +66,8 @@ for item in table_list:
 
 # output_string = soup.prettify()
 # with open("New_Index.html", "w+") as output_file:
-#     output_file.write(output_string)
-#     output_file.close()
+# #     output_file.write(output_string)
+# #     output_file.close()
 my_file.close()
 
 
