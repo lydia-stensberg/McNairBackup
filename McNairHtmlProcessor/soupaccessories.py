@@ -156,9 +156,6 @@ class Soup_Handler:
                 file.close()
 
 
-
-
-
 def get_blanks(tag):
     return tag.string=="Blank"
 

@@ -17,7 +17,6 @@ welcome_message = "Please use the File Menu to load in the HTML file you'd \n" \
                   "like to change first, then select a command."
 tk.Label(root, text=welcome_message).grid(row=0,columnspan=2)
 
-
 base_soup = None
 
 #Button Methods
@@ -30,13 +29,23 @@ def load_comparative_file():
     if base_soup is not None:
         base_soup.open_comparative_file()
     else:
+        print("Soup is None")
         pass
 
-def write_output(overwite=False):
+def save_new_file():
     global base_soup
     if base_soup is not None:
-        base_soup.write_output(overwite)
+        base_soup.write_output(False)
     else:
+        print("Soup is none")
+        pass
+
+def overwrite_file():
+    global base_soup
+    if base_soup is not None:
+        base_soup.write_output(True)
+    else:
+        print("Soup is none")
         pass
 
 def initialize_soup():
@@ -45,6 +54,11 @@ def initialize_soup():
     print("Chosen.")
 
 
+def update_choices():
+    print("Choices are updated")
+    global base_soup
+
+    pass
 
 #Method to add identical buttons to the top and side button frames
 def add_required_buttons(tkinter_frame):
@@ -64,6 +78,7 @@ def add_required_buttons(tkinter_frame):
     for item in choices: button_select.insert(tk.END, item)
     button_select.grid(column=1, row=6)
     tk.Label(tkinter_frame, text="Pick a button to edit").grid(row=6, column=0)
+
 
     return
 
@@ -103,9 +118,9 @@ add_required_buttons(top_button_frame)
 menu_bar = tk.Menu(root)
 
 top_button_menu = tk.Menu(menu_bar, tearoff=0)
-top_button_menu.add_command(label="Load Existing File", command=initialize_soup)
-top_button_menu.add_command(label="Save New File", command=write_output(True))
-top_button_menu.add_command(label="Overwrite Existing File", command=write_output(True))
+initialize_command = top_button_menu.add_command(label="Load Existing File", command=initialize_soup)
+top_button_menu.add_command(label="Save New File", command=save_new_file)
+top_button_menu.add_command(label="Overwrite Existing File", command=overwrite_file)
 top_button_menu.add_separator()
 top_button_menu.add_command(label="Reset Program", command=root.quit)
 menu_bar.add_cascade(label="File Menu", menu=top_button_menu)
@@ -115,6 +130,10 @@ side_button_menu = tk.Menu(menu_bar, tearoff=0)
 side_button_menu.add_command(label="Load New File", command=load_comparative_file)
 side_button_menu.add_command(label="Rectangle", command=print_hello)
 menu_bar.add_cascade(label="Compare Loaded File to New File", menu=side_button_menu)
+
+#TODO bind event to update choice list once file is loaded
+initialize_command.bind('<Button-1>',)
+
 
 root.config(menu=menu_bar)
 
