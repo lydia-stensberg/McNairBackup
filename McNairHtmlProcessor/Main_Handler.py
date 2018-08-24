@@ -51,6 +51,7 @@ def overwrite_file():
 def initialize_soup():
     global base_soup
     base_soup = soupaccessories.Soup_Handler()
+    update_choices()
     print("Chosen.")
 
 
@@ -132,7 +133,7 @@ side_button_menu.add_command(label="Rectangle", command=print_hello)
 menu_bar.add_cascade(label="Compare Loaded File to New File", menu=side_button_menu)
 
 #TODO bind event to update choice list once file is loaded
-initialize_command.bind('<Button-1>',)
+# initialize_command.bind('<Button-1>',)
 
 
 root.config(menu=menu_bar)
