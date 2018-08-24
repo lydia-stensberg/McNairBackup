@@ -6,49 +6,51 @@ from tkinter import messagebox
 import tkinteraccessories
 
 
-#singleton class to control the soup
-class Soup_Handler:
+# singleton class to control the soup
+class SoupHandler:
     class _SingleSoup:
-        def __init__(self,soup,file):
+        def __init__(self, soup, file):
             self.soup = soup
             self.file = file
+
         def __str__(self):
             return repr(self) + self.soup
-        def override(self,soup,file):
+
+        def override(self, soup, file):
             self.soup = soup
             self.file = file
-    #object to represent soup instance! should only be one! should I add a file to the internal class?
-    instance=None
-    #objects to represent the open files. Mainly stored so that we have access to the file paths.
+    # object to represent soup instance! should only be one! should I add a file to the internal class?
+    instance = None
+    # objects to represent the open files. Mainly stored so that we have access to the file paths.
     comparative_file = None
+
     def __init__(self):
-        if not Soup_Handler.instance:
+        if not SoupHandler.instance:
             file = filedialog.askopenfile(mode="r")
-            soup = BeautifulSoup(file,'html.parser')
-            Soup_Handler.instance = Soup_Handler._SingleSoup(soup,file)
+            soup = BeautifulSoup(file, 'html.parser')
+            SoupHandler.instance = SoupHandler._SingleSoup(soup, file)
         else:
-            if (tkinteraccessories.are_you_sure()=='yes'):
+            if tkinteraccessories.are_you_sure() == 'yes':
                 file = filedialog.askopenfile(mode="r")
                 soup = BeautifulSoup(file, 'html.parser')
-                Soup_Handler.instance.override(soup,file)
+                SoupHandler.instance.override(soup, file)
             else:
                 messagebox.showerror("New File Canceled", "No new file will be loaded.")
 
-
     def __getattr__(self, item):
-        return getattr(self,item)
+        return getattr(self, item)
 
 
     def open_comparative_file(self):
-        if not Soup_Handler.comparative_file:
-            file = filedialog.askopenfile(mode="r")
+        if not SoupHandler.comparative_file:
+            file = filedialog.askopenfile(mode = "r")
             soup = BeautifulSoup(file, 'html.parser')
-            Soup_Handler.comparative_file = Soup_Handler._SingleSoup(soup, file)
+            SoupHandler.comparative_file = SoupHandler._SingleSoup(soup, file)
         else:
             if (tkinteraccessories.are_you_sure() == 'yes'):
-                file = filedialog.askopenfile(mode="r")
+                file = filedialog.askopenfile(mode = "r")
                 soup = BeautifulSoup(file, 'html.parser')
-                Soup_Handler.comparative_file.override(soup, file)
+                SoupHandler.comparative_file.override(soup, file)
             else:
                 messagebox.showerror("New File Canceled", "No new file will be loaded.")
 
@@ -92,22 +94,18 @@ class Soup_Handler:
         return href is not None and re.compile("Files").search(href)
 
 
-    def write_output(list):
-        print('\n'.join('{}:{}'.format(*k) for k in enumerate(list)))
-
-
     def find_button_by_tag(soup, old_name):
         return soup.find_all(string=old_name)
 
 
-    def get_blank_buttons(self,soup):
+    def get_blank_buttons(self, soup):
         buttons =soup.find_all(get_blanks)
         blank_buttons = []
         for tag in buttons:
-            i=0
+            i = 0
             for item in tag.descendants:
-                i=i+1
-            if(i>1):
+                i = i+1
+            if(i > 1):
                 blank_buttons.append(tag)
         return blank_buttons
 
@@ -118,20 +116,20 @@ class Soup_Handler:
         return
 
 
-    def change_top_button_name(self,soup, button_name, new_button_name):
-        self.change_button(self.top_menu_buttons(soup),button_name,new_button_name)
+    def change_top_button_name(self, soup, button_name, new_button_name):
+        self.change_button(self.top_menu_buttons(soup), button_name,new_button_name)
         return
 
 
-    def change_side_button_name(self,soup,button_name,new_button_name):
-        self.change_button(self.side_menu_buttons(soup),button_name,new_button_name)
+    def change_side_button_name(self, soup, button_name, new_button_name):
+        self.change_button(self.side_menu_buttons(soup), button_name, new_button_name)
         return
 
 
-    def change_button(button_list, button_name, new_button_name):
+    def change_button(self, button_list, button_name, new_button_name):
         is_found = False
         for item in button_list:
-           for child in item.contents:
+            for child in item.contents:
                if (is_found):
                    break
                if(child.name=="span" and child.string==button_name):
@@ -144,20 +142,76 @@ class Soup_Handler:
     def clear_all_soup(self):
         pass
 
-    def write_output(self,override_filepath=False):
+    def write_output(self, override_filepath=False):
         output_string = self.instance.soup.prettify()
         if not override_filepath:
             with filedialog.asksaveasfile("w+") as new_file:
                 new_file.write(output_string)
                 new_file.close()
         else:
-            with open(self.instance.file,"w+") as file:
+            with open(self.instance.file, "w+") as file:
                 file.write(output_string)
                 file.close()
+
+    def create_new_table_entry(self, href, new_name):
+        new_entry = self.instance.soup.new_tag(name='tr')
+        level1_entry = self.instance.soup.new_tag(name='td')
+        level2_entry = self.instance.soup.new_tag('a', attrs={'href': href})
+        level2_entry.string = new_name
+        new_entry.append(level1_entry)
+        level1_entry.append(level2_entry)
+        return new_entry
 
 
 def get_blanks(tag):
     return tag.string=="Blank"
 
+def has_file(href):
+    return href is not None and re.compile("Files").search(href)
+
+def first_buttons(soup):
+    return soup.find_all(class_="Button1")
+
+def side_menu_buttons(soup):
+    return soup.find_all(class_="Button2")
 
 
+def top_menu_buttons(soup):
+    return soup.find_all(class_="Button3")
+
+def has_class(css_class):
+    return css_class is not None
+
+
+def has_class_no_id(tag):
+    return tag.has_attr('class') and not tag.has_attr('id')
+
+
+def write_list_output(list):
+    print('\n'.join('{}:{}'.format(*k) for k in enumerate(list)))
+
+
+def create_new_side_button(soup, button_href, button_id, button_style, button_string):
+    new_button = soup.new_tag('a', attrs={'class': 'Button2', 'href': button_href, 'id': button_id,
+                                          'style': button_style})
+    span_tag = soup.new_tag('span')
+    new_button.append(span_tag)
+    span_tag.string = button_string
+    return new_button
+
+
+def add_new_button_image(soup, previous_image):
+    new_image = soup.new_tag('img', attrs={'alt': previous_image['alt'], 'border': previous_image['border'],
+                                           'onload': previous_image['onload'], 'src': previous_image['src'],
+                                           'style': new_style_from_existing_style(soup, previous_image['style']),
+                                           'width': previous_image['width'], 'height': previous_image['height']})
+    previous_image.insert_after(new_image)
+    return new_image
+
+
+def new_style_from_existing_style(soup, existing_style_string):
+    top_index = existing_style_string.find("top:")
+    existing_position = existing_style_string[(top_index + 4):(top_index + 7)]
+    new_position = int(existing_position) + 34
+    new_style = existing_style_string.replace(str(existing_position), str(new_position))
+    return new_style

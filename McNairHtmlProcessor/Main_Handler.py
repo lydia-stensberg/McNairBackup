@@ -7,7 +7,6 @@ import Error_Handler
 """General Notes"""
 """No error-handling takes place in this file. All error-handling happens in underlying methods."""
 
-
 #Set up interface root and frame
 root = tk.Tk(className="McNair HTML Editor")
 root.title = "McNair HTML Editor"
@@ -50,7 +49,7 @@ def overwrite_file():
 
 def initialize_soup():
     global base_soup
-    base_soup = soupaccessories.Soup_Handler()
+    base_soup = soupaccessories.SoupHandler()
     update_choices()
     print("Chosen.")
 

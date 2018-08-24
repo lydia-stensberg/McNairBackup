@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/McNairHtmlProcessor/soupaccessories.py" line="93" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="6c4e8129-d54f-410e-bca7-b63c58359b2b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/McNairHtmlProcessor/Edit_Tables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/McNairDev_local.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/McNairDev_local.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/McNairHtmlProcessor/Main_Handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/McNairHtmlProcessor/Main_Handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/McNairHtmlProcessor/soupaccessories.py" beforeDir="false" afterPath="$PROJECT_DIR$/McNairHtmlProcessor/soupaccessories.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/beautifulsouptest.py" beforeDir="false" afterPath="$PROJECT_DIR$/beautifulsouptest.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,32 +23,37 @@
     <session id="-156972721">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.4" value="2" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="5" />
+          <entry key="html" value="2" />
+          <entry key="py" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="5" />
+          <entry key="HTML" value="2" />
+          <entry key="Python" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="10" />
-          <entry key="py" value="4274" />
+          <entry key="dummy" value="25" />
+          <entry key="html" value="77" />
+          <entry key="py" value="7885" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="10" />
-          <entry key="Python" value="4274" />
+          <entry key="HTML" value="77" />
+          <entry key="PLAIN_TEXT" value="25" />
+          <entry key="Python" value="7885" />
         </counts>
       </usages-collector>
     </session>
@@ -83,13 +93,37 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/beautifulsouptest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="119" column="1" lean-forward="true" selection-start-line="119" selection-start-column="1" selection-end-line="119" selection-end-column="1" />
+            <state relative-caret-position="170">
+              <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
-                <marker date="1534989171507" expanded="true" signature="761:1045" ph="..." />
-                <marker date="1534989171507" expanded="true" signature="1836:1887" ph="..." />
-                <marker date="1534989171507" expanded="true" signature="2615:2617" ph="..." />
+                <marker date="1535142196172" expanded="true" signature="1286:1288" ph="..." />
+                <marker date="1535142196172" expanded="true" signature="1339:1485" ph="..." />
+                <marker date="1535142196172" expanded="true" signature="1605:1607" ph="..." />
+                <marker date="1535142196172" expanded="true" signature="1628:1633" ph="..." />
+                <marker date="1535142196172" expanded="true" signature="1804:2027" ph="..." />
+                <marker date="1535142196172" expanded="true" signature="2078:2083" ph="..." />
+                <marker date="1535142196172" expanded="true" signature="2381:2382" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/Edit_Tables.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/Edit_Side_Buttons.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-49">
+              <folding>
+                <element signature="e#0#36#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -98,8 +132,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/soupaccessories.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2567">
-              <caret line="156" selection-start-line="156" selection-end-line="156" />
+            <state relative-caret-position="143">
+              <caret line="171" column="9" selection-start-line="171" selection-start-column="9" selection-end-line="171" selection-end-column="9" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -122,8 +156,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/Main_Handler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="74" column="40" selection-start-line="74" selection-start-column="40" selection-end-line="74" selection-end-column="40" />
+            <state relative-caret-position="119">
+              <caret line="7" column="99" selection-start-line="7" selection-start-column="99" selection-end-line="7" selection-end-column="99" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -149,6 +183,16 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>write_ou</find>
+      <find>all_scrip</find>
+      <find>create</find>
+      <find>mcnair</find>
+      <find>riser</find>
+      <find>write_list</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -157,15 +201,17 @@
       <list>
         <option value="$PROJECT_DIR$/McNairHtmlProcessor/tkinteraccessories.py" />
         <option value="$PROJECT_DIR$/McNairHtmlProcessor/Error_Handler.py" />
-        <option value="$PROJECT_DIR$/McNairHtmlProcessor/soupaccessories.py" />
+        <option value="$PROJECT_DIR$/McNairHtmlProcessor/Edit_Tables.py" />
+        <option value="$PROJECT_DIR$/BSLMC McNair Campus/Index.html" />
         <option value="$PROJECT_DIR$/McNairHtmlProcessor/Main_Handler.py" />
+        <option value="$PROJECT_DIR$/McNairHtmlProcessor/soupaccessories.py" />
         <option value="$PROJECT_DIR$/beautifulsouptest.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="282" />
-    <option name="y" value="39" />
+    <option name="x" value="-8" />
+    <option name="y" value="32" />
     <option name="width" value="939" />
     <option name="height" value="1092" />
   </component>
@@ -178,12 +224,13 @@
         <subPane>
           <expand>
             <path>
-              <item name="McNairDev_backupLocal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="McNairDev_backupLocal" type="462c0819:PsiDirectoryNode" />
+              <item name="McNairDev_local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="McNairDev_local" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="McNairDev_backupLocal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="McNairDev_local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="McNairDev_local" type="462c0819:PsiDirectoryNode" />
+              <item name="BSLMC McNair Campus" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -251,6 +298,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="soupaccessories" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="McNairDev_local" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/McNairHtmlProcessor" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/McNairHtmlProcessor/soupaccessories.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="tkinteraccessories" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="McNairDev_local" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -276,10 +344,12 @@
       <item itemvalue="Python.Main_Handler" />
       <item itemvalue="Python.beautifulsouptest" />
       <item itemvalue="Python.tkinteraccessories" />
+      <item itemvalue="Python.soupaccessories" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.beautifulsouptest" />
+        <item itemvalue="Python.soupaccessories" />
         <item itemvalue="Python.Main_Handler" />
         <item itemvalue="Python.tkinteraccessories" />
       </list>
@@ -298,20 +368,29 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1292" height="692" extended-state="6" />
+    <frame x="-8" y="32" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31240064" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31190726" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.45115453" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32973504" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4504416" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32973504" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3285968" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
@@ -325,16 +404,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/soupaccessories.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2567">
-          <caret line="156" selection-start-line="156" selection-end-line="156" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/conda/conda/envs/python3_5/Lib/site-packages/bs4/element.py" />
     <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/tkinteraccessories.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -352,32 +422,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/BSLMC McNair Campus/New_Table_Index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BSLMC McNair Campus/Index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="47" column="38" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/Main_Handler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="74" column="40" selection-start-line="74" selection-start-column="40" selection-end-line="74" selection-end-column="40" />
+        <state relative-caret-position="119">
+          <caret line="7" column="99" selection-start-line="7" selection-start-column="99" selection-end-line="7" selection-end-column="99" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/conda/conda/envs/python3_5/Lib/site-packages/bs4/element.py">
+    <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/Edit_Tables.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="458" selection-start-line="458" selection-end-line="458" />
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/Edit_Side_Buttons.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-49">
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/soupaccessories.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="171" column="9" selection-start-line="171" selection-start-column="9" selection-end-line="171" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/beautifulsouptest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="119" column="1" lean-forward="true" selection-start-line="119" selection-start-column="1" selection-end-line="119" selection-end-column="1" />
+        <state relative-caret-position="170">
+          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
-            <marker date="1534989171507" expanded="true" signature="761:1045" ph="..." />
-            <marker date="1534989171507" expanded="true" signature="1836:1887" ph="..." />
-            <marker date="1534989171507" expanded="true" signature="2615:2617" ph="..." />
+            <marker date="1535142196172" expanded="true" signature="1286:1288" ph="..." />
+            <marker date="1535142196172" expanded="true" signature="1339:1485" ph="..." />
+            <marker date="1535142196172" expanded="true" signature="1605:1607" ph="..." />
+            <marker date="1535142196172" expanded="true" signature="1628:1633" ph="..." />
+            <marker date="1535142196172" expanded="true" signature="1804:2027" ph="..." />
+            <marker date="1535142196172" expanded="true" signature="2078:2083" ph="..." />
+            <marker date="1535142196172" expanded="true" signature="2381:2382" ph="..." />
           </folding>
         </state>
       </provider>
