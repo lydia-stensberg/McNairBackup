@@ -98,8 +98,8 @@ class SoupHandler:
         return soup.find_all(string=old_name)
 
 
-    def get_blank_buttons(self, soup):
-        buttons =soup.find_all(get_blanks)
+    def get_blank_buttons(self):
+        buttons =self.instance.soup.find_all(get_blanks)
         blank_buttons = []
         for tag in buttons:
             i = 0
@@ -110,8 +110,8 @@ class SoupHandler:
         return blank_buttons
 
 
-    def remove_blank_buttons(self,soup):
-        for tag in self.get_blank_buttons(soup):
+    def remove_blank_buttons(self):
+        for tag in self.get_blank_buttons():
             tag.extract()
         return
 

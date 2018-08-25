@@ -52,6 +52,7 @@ class SoupInterface(tk.Tk):
     button1_select = None
     button2_select = None
     button3_select = None
+    selected_button = ""
 
     def update_first_buttons(self):
         self.button1_select.delete(0,tk.END)
@@ -70,20 +71,23 @@ class SoupInterface(tk.Tk):
     def OnDouble(self, event):
         widget = event.widget
         selection=widget.curselection()
-        value = widget.get(selection[0])
-        print("selection:", selection, ": '%s'" % value)
+        self.selected_button = widget.get(selection[0])
+        print("selection:", selection, ": '%s'" % self.selected_button)
+
+    def delete_blanks(self):
+        if self.base_soup is not None:
+            self.base_soup.remove_blank_buttons()
+            self.update_first_buttons()
+        else:
+            pass
 
 
     # Method to add identical buttons to the top and side button frames
     def add_required_buttons(self, tkinter_frame):
         # button to delete a button
-        delete_button = tk.Button(tkinter_frame, text="Delete Blank Buttons", fg="blue", command=print_hello)
+        delete_button = tk.Button(tkinter_frame, text="Delete Blank Buttons", fg="blue",
+                                  command=self.delete_blanks)
         delete_button.grid(row=3, column=1)
-
-        # button to show all buttons
-        show_buttons = tk.Button(tkinter_frame, text="Show Existing Buttons", command=write_slogan)
-        show_buttons.grid(row=4, column=1)
-
 
         return
 
