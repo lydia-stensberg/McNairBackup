@@ -81,6 +81,17 @@ class SoupInterface(tk.Tk):
         self.update_first_buttons()
         return
 
+    def change_button2_name(self):
+        self.base_soup.change_second_button_name(button_name=self.selected_button,
+                                                 new_button_name=self.new_button2_label.get())
+        self.update_second_buttons()
+        return
+
+    def change_button3_name(self):
+        self.base_soup.change_third_button_name(button_name=self.selected_button,
+                                                 new_button_name=self.new_button3_label.get())
+        self.update_third_buttons()
+        return
 
     def OnDouble(self, event):
         widget = event.widget
@@ -104,10 +115,7 @@ class SoupInterface(tk.Tk):
                                   command=self.delete_blanks)
         delete_button.grid(row=3, column=1)
 
-        # button to change a button's name
-        delete_button = tk.Button(tkinter_frame, text="Change Button Text", fg="blue",
-                                  command=self.change_button1_name)
-        delete_button.grid(row=4, column=1)
+
 
         return
 
@@ -182,6 +190,21 @@ class SoupInterface(tk.Tk):
         self.button3_select.bind('<<ListboxSelect>>', self.OnDouble)
         self.button3_select.bind("<Double-Button-1>", self.OnDouble)
 
+        #adding button1 label change
+        # button to change a button's name
+        change_button1 = tk.Button(self.button1_frame, text="Change Button Text", fg="blue",
+                                  command=self.change_button1_name)
+        change_button1.grid(row=4, column=1)
+
+        # button to change button2 name
+        change_button2 = tk.Button(self.button2_frame, text="Change Button Text", fg="blue",
+                                  command=self.change_button2_name)
+        change_button2.grid(row=4, column=1)
+
+        # button to change button2 name
+        change_button3 = tk.Button(self.button3_frame, text="Change Button Text", fg="blue",
+                                  command=self.change_button3_name)
+        change_button3.grid(row=4, column=1)
 
         self.add_required_buttons(self.button2_frame)
         self.add_required_buttons(self.button1_frame)
