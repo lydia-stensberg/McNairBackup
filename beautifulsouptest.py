@@ -55,6 +55,7 @@ def change_table_entry_title(table_entry, new_entry_name):
     table_entry.a.string = new_entry_name
     return
 
+
 def find_button_images(soup):
     all_images = soup.find_all('img')
     button_images = []

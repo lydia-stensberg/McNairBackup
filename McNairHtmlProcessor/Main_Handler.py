@@ -2,15 +2,11 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 import soupaccessories
-import Error_Handler
 
 """General Notes"""
 """No error-handling takes place in this file. All error-handling happens in underlying methods."""
 
 #Button Methods
-def print_hello(): print("Hello! Button Clicked!")
-
-def write_slogan(): print("Writing a slogan!")
 
 def load_comparative_file():
     global base_soup
@@ -19,29 +15,6 @@ def load_comparative_file():
     else:
         print("Soup is None")
         pass
-
-def save_new_file():
-    global base_soup
-    if base_soup is not None:
-        base_soup.write_output(False)
-    else:
-        print("Soup is none")
-        pass
-
-def overwrite_file():
-    global base_soup
-    if base_soup is not None:
-        base_soup.write_output(True)
-    else:
-        print("Soup is none")
-        pass
-
-
-def update_choices():
-    print("Choices are updated")
-    global base_soup
-    pass
-
 
 class SoupInterface(tk.Tk):
 
@@ -53,26 +26,68 @@ class SoupInterface(tk.Tk):
     button2_select = None
     button3_select = None
     selected_button = ""
+    new_button1_label = None
+    new_button2_label = None
+    new_button3_label = None
+
+    def save_new_file(self):
+        if self.base_soup is not None:
+            self.base_soup.write_output(False)
+        else:
+            print("Soup is none")
+            pass
+
+    def overwrite_file(self):
+        if self.base_soup is not None:
+            self.base_soup.write_output(True)
+        else:
+            print("Soup is none")
+            pass
 
     def update_first_buttons(self):
         self.button1_select.delete(0,tk.END)
         button_list = self.base_soup.first_buttons()
-        button_names = []
+        soupaccessories.write_list_output(button_list)
         for item in button_list:
             self.button1_select.insert(tk.END, item.string)
         self.button1_select.update()
         return
 
+    def update_second_buttons(self):
+        self.button2_select.delete(0,tk.END)
+        button_list = self.base_soup.second_buttons()
+        for item in button_list:
+            self.button2_select.insert(tk.END, item.string)
+        self.button2_select.update()
+
+    def update_third_buttons(self):
+        self.button3_select.delete(0,tk.END)
+        button_list = self.base_soup.third_buttons()
+        for item in button_list:
+            self.button3_select.insert(tk.END, item.string)
+        self.button3_select.update()
+
     def initialize_soup(self):
         self.base_soup = soupaccessories.SoupHandler()
         self.update_first_buttons()
+        self.update_second_buttons()
+        self.update_third_buttons()
         print("Chosen.")
+
+
+    def change_button1_name(self):
+        self.base_soup.change_first_button_name(button_name=self.selected_button,
+                                                 new_button_name=self.new_button1_label.get())
+        self.update_first_buttons()
+        return
+
 
     def OnDouble(self, event):
         widget = event.widget
         selection=widget.curselection()
         self.selected_button = widget.get(selection[0])
         print("selection:", selection, ": '%s'" % self.selected_button)
+
 
     def delete_blanks(self):
         if self.base_soup is not None:
@@ -88,6 +103,11 @@ class SoupInterface(tk.Tk):
         delete_button = tk.Button(tkinter_frame, text="Delete Blank Buttons", fg="blue",
                                   command=self.delete_blanks)
         delete_button.grid(row=3, column=1)
+
+        # button to change a button's name
+        delete_button = tk.Button(tkinter_frame, text="Change Button Text", fg="blue",
+                                  command=self.change_button1_name)
+        delete_button.grid(row=4, column=1)
 
         return
 
@@ -115,18 +135,19 @@ class SoupInterface(tk.Tk):
         # Setting up button1
         tk.Label(self.button1_frame, text="Enter New Name").grid(row=1)
         new_button_name = tk.StringVar()
-        new_button_entry = tk.Entry(self.button1_frame, textvariable=new_button_name)
-        new_button_entry.grid(row=1, column=1)
+        self.new_button1_label = tk.Entry(self.button1_frame, textvariable=new_button_name)
+        self.new_button1_label.grid(row=1, column=1)
+
 
         # Setting up button2 frame
         tk.Label(self.button2_frame, text="Enter New Name").grid(row=2)
-        entry2 = tk.Entry(self.button2_frame)
-        entry2.grid(row=2, column=1)
+        self.new_button2_label = tk.Entry(self.button2_frame)
+        self.new_button2_label.grid(row=2, column=1)
 
         # Setting up button3 grams
         tk.Label(self.button3_frame, text="Enter New Name").grid(row=2)
-        entry3 = tk.Entry(self.button3_frame)
-        entry3.grid(row=2, column=1)
+        self.new_button3_label = tk.Entry(self.button3_frame)
+        self.new_button3_label.grid(row=2, column=1)
 
         # Setting up options menu
         sample_var = tk.StringVar(self.button1_frame)
@@ -177,8 +198,8 @@ class SoupInterface(tk.Tk):
 
         top_button_menu = tk.Menu(menu_bar, tearoff=0)
         initialize_command = top_button_menu.add_command(label="Load Existing File", command=self.initialize_soup)
-        top_button_menu.add_command(label="Save New File", command=save_new_file)
-        top_button_menu.add_command(label="Overwrite Existing File", command=overwrite_file)
+        top_button_menu.add_command(label="Save New File", command=self.save_new_file)
+        top_button_menu.add_command(label="Overwrite Existing File", command=self.overwrite_file)
         top_button_menu.add_separator()
         top_button_menu.add_command(label="Reset Program", command=self.quit)
         menu_bar.add_cascade(label="File Menu", menu=top_button_menu)
@@ -186,7 +207,6 @@ class SoupInterface(tk.Tk):
         # Use to load second file to compare to first file.
         side_button_menu = tk.Menu(menu_bar, tearoff=0)
         side_button_menu.add_command(label="Load New File", command=load_comparative_file)
-        side_button_menu.add_command(label="Rectangle", command=print_hello)
         menu_bar.add_cascade(label="Compare Loaded File to New File", menu=side_button_menu)
 
         # TODO bind event to update choice list once file is loaded

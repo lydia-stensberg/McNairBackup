@@ -68,7 +68,7 @@ class SoupHandler:
         file = self.open_with_filepath(file_path)
         soup = BeautifulSoup(file, "html.parser")
         side_button_names = []
-        side_buttons = self.side_menu_buttons(soup)
+        side_buttons = self.second_buttons(soup)
         for button in side_buttons:
             side_button_names.append(button.string)
         return {'Side Button Names': side_button_names,'Side Buttons': side_buttons}
@@ -82,12 +82,12 @@ class SoupHandler:
         return tag.has_attr('class') and not tag.has_attr('id')
 
 
-    def side_menu_buttons(soup):
-        return soup.find_all(class_="Button2")
+    def second_buttons(self):
+        return self.instance.soup.find_all(class_="Button2")
 
 
-    def top_menu_buttons(soup):
-        return soup.find_all(class_="Button3")
+    def third_buttons(self):
+        return self.instance.soup.find_all(class_="Button3")
 
 
     def has_file(href):
@@ -116,13 +116,16 @@ class SoupHandler:
         return
 
 
-    def change_top_button_name(self, soup, button_name, new_button_name):
-        self.change_button(self.top_menu_buttons(soup), button_name,new_button_name)
+    def change_third_button_name(self, button_name, new_button_name):
+        self.change_button(self.third_buttons(), button_name, new_button_name)
         return
 
+    def change_first_button_name(self, button_name, new_button_name):
+        self.change_button(self.first_buttons(), button_name, new_button_name)
 
-    def change_side_button_name(self, soup, button_name, new_button_name):
-        self.change_button(self.side_menu_buttons(soup), button_name, new_button_name)
+
+    def change_second_button_name(self, button_name, new_button_name):
+        self.change_button(self.second_buttons(), button_name, new_button_name)
         return
 
 
