@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup
 import soupaccessories
 import re
-
+import tkinter
+from tkinter import filedialog
 
 def all_script_tags(soup):
     return soup.find_all("script")
@@ -76,15 +77,29 @@ def return_table_contents_by_id(soup, table_id):
             table_contents = item.find_all("tr")
     return table_contents
 
-my_file = open("BSLMC McNair Campus\Files\AirSystems\AirSystems.html", 'r')
+file = filedialog.askopenfile(mode="r")
 
-soup = BeautifulSoup(my_file, 'html.parser')
+# my_file = open("BSLMC McNair Campus\Files\AirSystems\AirSystems.html", 'r')
+
+soup = BeautifulSoup(file, 'html.parser')
+
+soup_string = soup.prettify()
+
+old_heading = "McNair Tower 1 Systems Manual"
+
+old_footer = "McNair BSLMC McNair Campus Tower 1 - Facility Assessment & Commissioning"
+
+if soup_string.find(old_footer) > 0 and soup_string.find(old_heading) > 0:
+    print("We've found them both")
 
 
 
-table_list = find_all_tables(soup)
 
-top_buttons = soupaccessories.first_buttons(soup)
+
+
+# table_list = find_all_tables(soup)
+#
+# top_buttons = soupaccessories.first_buttons(soup)
 
 # button_list = soup.find_all(soupaccessories.has_class)
 
@@ -94,7 +109,7 @@ top_buttons = soupaccessories.first_buttons(soup)
 #     print("This is a new table with the id " + item['id'])  # this works
 #     print("The items in this table are %s " % return_table_contents_by_id(soup, item['id']))
 
-soupaccessories.write_list_output(top_buttons)
+# soupaccessories.write_list_output(top_buttons)
 
 
 # output_string = soup.prettify()
@@ -102,4 +117,4 @@ soupaccessories.write_list_output(top_buttons)
 #     output_file.write(output_string)
 #     output_file.close()
 
-my_file.close()
+file.close()

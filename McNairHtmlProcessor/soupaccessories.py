@@ -162,6 +162,9 @@ class SoupHandler:
         level1_entry.append(level2_entry)
         return new_entry
 
+    def first_buttons(self):
+        return self.instance.soup.find_all(class_="Button1")
+
 
 def get_blanks(tag):
     return tag.string=="Blank"
@@ -169,8 +172,7 @@ def get_blanks(tag):
 def has_file(href):
     return href is not None and re.compile("Files").search(href)
 
-def first_buttons(soup):
-    return soup.find_all(class_="Button1")
+
 
 def side_menu_buttons(soup):
     return soup.find_all(class_="Button2")
