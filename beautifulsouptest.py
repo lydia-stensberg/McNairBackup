@@ -98,17 +98,17 @@ if soup_string.find(old_footer) > 0 and soup_string.find(old_heading) > 0:
 
 
 
-# table_list = find_all_tables(soup)
-#
-# top_buttons = soupaccessories.first_buttons(soup)
+table_list = find_all_tables(soup)
 
-# button_list = soup.find_all(soupaccessories.has_class)
+top_buttons = soupaccessories.first_buttons(soup)
+
+button_list = soup.find_all(soupaccessories.has_class)
 
 # this returns a list of content tags for each table! yay :)
-# for item in table_list:
-#     table_contents = return_table_contents_by_id(soup, item['id'])
-#     print("This is a new table with the id " + item['id'])  # this works
-#     print("The items in this table are %s " % return_table_contents_by_id(soup, item['id']))
+for item in table_list:
+    table_contents = return_table_contents_by_id(soup, item['id'])
+    print("This is a new table with the id " + item['id'])  # this works
+    print("The items in this table are %s " % return_table_contents_by_id(soup, item['id']))
 
 # soupaccessories.write_list_output(top_buttons)
 

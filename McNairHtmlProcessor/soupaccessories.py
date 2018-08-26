@@ -4,6 +4,7 @@ import tkinter
 from tkinter import filedialog
 from tkinter import messagebox
 import tkinteraccessories
+import Error_Handler
 
 
 # singleton class to control the soup
@@ -94,8 +95,17 @@ class SoupHandler:
         return href is not None and re.compile("Files").search(href)
 
 
-    def find_button_by_tag(soup, old_name):
-        return soup.find_all(string=old_name)
+    def find_button_by_tag(self, old_name):
+        def string_is_tag(tag):
+            return tag.string == old_name
+        buttons = self.instance.soup.find_all(string_is_tag)
+        for tag in buttons:
+            i = 0
+            for item in tag.descendants:
+                i = i+1
+            if(i > 1):
+                return tag
+        raise Error_Handler.Button_Has_No_Table("This button has no tables associated with it")
 
 
     def get_blank_buttons(self):
@@ -168,6 +178,44 @@ class SoupHandler:
     def first_buttons(self):
         return self.instance.soup.find_all(class_="Button1")
 
+    def return_table_contents_by_id(self, table_id):
+        table_list = self.find_all_tables()
+        table_contents = []
+        for item in table_list:
+            if (item['id'] == table_id):
+                table_contents = item.find_all("tr")
+        return table_contents
+
+    def find_all_tables(self):
+        return self.instance.soup.find_all(find_tables)
+
+
+    def create_new_side_button(self, button_href, button_id, button_style, button_string):
+        new_button = self.soup.new_tag('a', attrs={'class': 'Button2', 'href': button_href, 'id': button_id,
+                                              'style': button_style})
+        span_tag = self.soup.new_tag('span')
+        new_button.append(span_tag)
+        span_tag.string = button_string
+        return new_button
+
+    def add_new_button_image(self, previous_image):
+        new_image = self.instance.soup.new_tag('img',
+                                               attrs={'alt': previous_image['alt'], 'border': previous_image['border'],
+                                               'onload': previous_image['onload'],
+                                                      'src': previous_image['src'],
+                                               'style': self.new_style_from_existing_style(self.instance.soup,
+                                                                                      previous_image['style']),
+                                               'width': previous_image['width'], 'height': previous_image['height']})
+        previous_image.insert_after(new_image)
+        return new_image
+
+    def new_style_from_existing_style(self, existing_style_string):
+        top_index = existing_style_string.find("top:")
+        existing_position = existing_style_string[(top_index + 4):(top_index + 7)]
+        new_position = int(existing_position) + 34
+        new_style = existing_style_string.replace(str(existing_position), str(new_position))
+        return new_style
+
 
 def get_blanks(tag):
     return tag.string=="Blank"
@@ -175,7 +223,8 @@ def get_blanks(tag):
 def has_file(href):
     return href is not None and re.compile("Files").search(href)
 
-
+def find_tables(tag):
+    return tag.name == "table"
 
 def side_menu_buttons(soup):
     return soup.find_all(class_="Button2")
@@ -195,28 +244,18 @@ def has_class_no_id(tag):
 def write_list_output(list):
     print('\n'.join('{}:{}'.format(*k) for k in enumerate(list)))
 
+def change_table_entry_title(table_entry, new_entry_name):
+    table_entry.a.string = new_entry_name
+    return
 
-def create_new_side_button(soup, button_href, button_id, button_style, button_string):
-    new_button = soup.new_tag('a', attrs={'class': 'Button2', 'href': button_href, 'id': button_id,
-                                          'style': button_style})
-    span_tag = soup.new_tag('span')
-    new_button.append(span_tag)
-    span_tag.string = button_string
-    return new_button
-
-
-def add_new_button_image(soup, previous_image):
-    new_image = soup.new_tag('img', attrs={'alt': previous_image['alt'], 'border': previous_image['border'],
-                                           'onload': previous_image['onload'], 'src': previous_image['src'],
-                                           'style': new_style_from_existing_style(soup, previous_image['style']),
-                                           'width': previous_image['width'], 'height': previous_image['height']})
-    previous_image.insert_after(new_image)
-    return new_image
+def change_table_entry_file(table_entry, new_href):
+    table_entry.a['href'] = new_href
+    return
 
 
-def new_style_from_existing_style(soup, existing_style_string):
-    top_index = existing_style_string.find("top:")
-    existing_position = existing_style_string[(top_index + 4):(top_index + 7)]
-    new_position = int(existing_position) + 34
-    new_style = existing_style_string.replace(str(existing_position), str(new_position))
-    return new_style
+
+
+
+
+
+
