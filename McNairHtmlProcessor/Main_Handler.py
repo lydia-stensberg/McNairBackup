@@ -142,37 +142,31 @@ class SoupInterface(tk.Tk):
         return
 
     def edit_tables(self, selected_button_name):
-        selected_entry_name = ""
-        new_name = ""
         selected_button = self.base_soup.find_button_by_tag(selected_button_name)
 
-        def change_name():
-            global selected_entry_name
-            get_selection()
-            global new_name
-            soupaccessories.change_table_entry_title(selected_entry_name,new_name)
+        def change_name(new_name):
+            selected_entry_name = get_selection()
+            soupaccessories.change_table_entry_title(selected_entry_name,new_name.get())
 
         def change_file():
-            global selected_button_name
-            get_selection()
-            soupaccessories.change_table_entry_file(self.base_soup.find_button_by_tag(selected_button_name),
+            selected_entry_name = get_selection()
+            soupaccessories.change_table_entry_file(self.base_soup.find_button_by_tag(selected_entry_name),
                                                     filedialog.asksaveasfilename())
 
         def get_selection(event):
-            global selected_button
-            global selected_button_name
-            selected_button = self.base_soup.find_button_by_tag(selected_button_name)
-            selected_button_name = selected_button.string
-            return
+            selected_entry = event.widget.get(event.widget.curselection())
+            selected_button = self.base_soup.find_button_by_tag(selected_entry)
+            return selected_button.string
+
 
         popup = tk.Toplevel(self)
         popup.title(self.title)
 
         # based on button, get table by i.d.
         # python is typing this as a list not a dictionary?
-        print(selected_button)
+        # print(selected_button)
         table_content = self.base_soup.return_table_contents_by_id(selected_button['id'] + "M")
-        print(table_content)
+        # print(table_content)
 
         # Setting up options menu of entries
         # sample_var = tk.StringVar(self.button2_frame)
