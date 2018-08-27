@@ -44,7 +44,10 @@ def find_tables(tag):
 
 
 def change_table_entry_title(table_entry, new_entry_name):
-    table_entry.a.string = new_entry_name
+    if table_entry.a.string is None:
+        table_entry.span.string = new_entry_name
+    else:
+        table_entry.a.string = new_entry_name
     return
 
 
@@ -93,6 +96,8 @@ for item in button_list:
     prompt = input("What would you like to change? ")
     if prompt == 'href':
         item.href = filedialog.askopenfilename()
+    elif prompt == 'link':
+        item.href = input("Enter a new file link")
     elif prompt == 'table':
         print("This is a new table with the id " + item['id'])  # this works
         table_contents = return_table_contents_by_id(soup_wrapper.instance.soup, item['id'])
@@ -106,27 +111,35 @@ for item in button_list:
             elif answer == 'file':
                 new_file = filedialog.askopenfilename()
                 change_table_entry_file(entry, new_file)
-                print(entry)
+                # print(entry)
+            elif answer == 'link':
+                new_file = input("Enter a new href link")
+                change_table_entry_file(entry, new_file)
+
             else:
                 pass
+
         new_entry = input("Would you like to add a new entry to this table or delete an entry? ")
-        if new_entry == "new":
-            new_name = input("Enter the new entry name: ")
-            new_file = input("Is the new entry a file or a link?")
-            if new_file == "link":
-                file = input("Please enter the web address to link.")
-            elif new_file == "file":
-                file = filedialog.askopenfilename()
-            else:
-                print("New Entry Addition Canceled")
-                pass
-            table_contents[-1].insert_after(soup_wrapper.create_new_table_entry(file, new_name))
-        elif new_entry == "delete":
-            entry_to_delete = input("Please enter the name of the entry you'd like to delete")
-            for entry in table_contents:
-                if entry.a.string == entry_to_delete:
-                    entry.extract()
-                    print(entry + " was deleted")
+        while new_entry == "add" or new_entry == "delete":
+
+            if new_entry == "add":
+                new_name = input("Enter the new entry name: ")
+                new_file = input("Is the new entry a file or a link?")
+                if new_file == "link":
+                    file = input("Please enter the web address to link.")
+                elif new_file == "file":
+                    file = filedialog.askopenfilename()
+                else:
+                    print("New Entry Addition Canceled")
+                    pass
+                table_contents[-1].insert_after(soup_wrapper.create_new_table_entry(file, new_name))
+            elif new_entry == "delete":
+                entry_to_delete = input("Please enter the name of the entry you'd like to delete")
+                for entry in table_contents:
+                    if entry.a.string == entry_to_delete:
+                        entry.td.decompose()
+                        print(entry + " was deleted")
+            new_entry = input("Would you like to add a new entry to this table or delete an entry? ")
 
 
 
@@ -139,6 +152,6 @@ for item in button_list:
 
 
 output_string = soup_wrapper.instance.soup.prettify()
-with open("BSLMC McNair Campus\\New_Table_Index.html", "w+") as output_file:
+with filedialog.asksaveasfile(mode="w+") as output_file:
     output_file.write(output_string)
     output_file.close()

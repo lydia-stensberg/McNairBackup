@@ -87,8 +87,22 @@ first_button_list = soup.first_buttons()
 second_button_list =  soup.second_buttons()
 third_button_list =  soup.third_buttons()
 
-print()
-for item in button_list:
+i = 1
+for item in [first_button_list, second_button_list, third_button_list]:
+    print('These are the Button{} types for this file.'.format(i))
+    soupaccessories.write_list_output(item)
+    i = i + 1
+
+button_edit = input("Which button set do you want to edit?")
+if button_edit == "1":
+    input = first_button_list
+elif button_edit == "2":
+    input = second_button_list
+elif button_edit == "3":
+    input = third_button_list
+else:
+    input = "Invalid"
+
 
 
 
