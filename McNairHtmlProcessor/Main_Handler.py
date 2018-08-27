@@ -35,6 +35,9 @@ class SoupInterface(tk.Tk):
     class _TableEditor(tk.Toplevel):
         entry_changes = {}
         new_name = None
+        selected = ""
+        new_name_entry = None
+        entries_list = None
         def __init__(self, table_contents):
             tk.Toplevel.__init__(self)
             self.title("Table Editor")
@@ -46,13 +49,13 @@ class SoupInterface(tk.Tk):
             for item in table_contents:
                 # choices.append(item.string)
                 choices.append(item)
-            entries_list = tk.Listbox(self)
+            self.entries_list = tk.Listbox(self)
             for item in choices:
-                entries_list.insert(tk.END, item)
-            entries_list.grid(column=1, row=1)
+                self.entries_list.insert(tk.END, item)
+            self.entries_list.grid(column=1, row=1)
             tk.Label(self, text="Pick an entry to edit").grid(row=1, column=0)
-            entries_list.bind('<<ListboxSelect>>', self.get_selection)
-            entries_list.bind("<Double-Button-1>", self.get_selection)
+            self.entries_list.bind('<<ListboxSelect>>', self.get_selection)
+            self.entries_list.bind("<Double-Button-1>", self.get_selection)
 
             # setting up button to change the table name
             change_entry_name = tk.Button(self, text="Change Name", command=self.change_name)
@@ -61,12 +64,13 @@ class SoupInterface(tk.Tk):
             # setting up button to change the table entry
             change_entry_href = tk.Button(self, text="Change File", command=self.change_file)
             change_entry_href.grid(column=1, row=3)
+            change_entry_href.bind("<Button-1>", self.change_file)
 
             # setting up entry for new name
 
-            self.new_name.trace("w", lambda name, index, mode, sv=self.new_name: tk.CallWrapper(self.new_name))
-            new_name_entry = tk.Entry(self, textvariable=self.new_name)
-            new_name_entry.grid(row=2, column=0)
+            # self.new_name.trace("w", lambda name, index, mode, sv=self.new_name: tk.CallWrapper(self.new_name))
+            self.new_name_entry = tk.Entry(self, textvariable=self.new_name)
+            self.new_name_entry.grid(row=2, column=0)
 
             # setting up "done" button
             quit_button = tk.Button(self, text="Quit", command=self.quit)
@@ -74,19 +78,35 @@ class SoupInterface(tk.Tk):
 
             self.mainloop()
 
-        def change_name(self, new_name):
-            selected_entry_name = self.get_selection()
+            return self.entry_changes
+
+        def change_name(self):
+            # selected_entry_name = self.get_selection()
+            selected_entry_name = "New Change Name"
             self.entry_changes.update({selected_entry_name: self.new_name})
+            update_list = self.entries_list.get(0, tk.END)
+            self.entries_list.delete(0, tk.END)
+            for item in update_list:
+                if item == selected_entry_name:
+                    item = self.new_name
+            for item in update_list:
+                self.entries_list.insert(tk.END, item)
 
         def change_file(self):
-            selected_entry_name = self.get_selection()
+            # selected_entry_name = self.get_selection()
+            selected_entry_name = "New File"
             new_key = selected_entry_name + " File"
             self.entry_changes.update({new_key: filedialog.askopenfile(mode="r")})
+            print(self.entry_changes)
 
         def get_selection(self, event):
-            selected_entry = event.widget.get(event.widget.curselection())
-            self.new_name = event.widget.get()
-            return selected_entry
+            # selected_entry = event.widget.get(event.widget.curselection())
+            selection = event.widget.curselection()
+            self.selected = event.widget.get(selection[0])
+            return
+
+        def get_new_name(self):
+            return self.new_name_entry.get()
 
     def save_new_file(self):
         if self.base_soup is not None:
@@ -260,7 +280,7 @@ class SoupInterface(tk.Tk):
         # Setting up options menu
         sample_var = tk.StringVar(self.button1_frame)
         sample_var.set("Default Value")
-        choices = ["one", "two", "three", "four"]
+        choices = ["Load", "Existing", "File", "First!"]
         self.button1_select = tk.Listbox(self.button1_frame)
         for item in choices:
             self.button1_select.insert(tk.END, item)
@@ -330,7 +350,7 @@ class SoupInterface(tk.Tk):
 
         # Replace File Path Handler
         menu_bar = tk.Menu(self)
-        
+
         top_button_menu = tk.Menu(menu_bar, tearoff=0)
         top_button_menu.add_command(label="Load Existing File", command=self.initialize_soup)
         top_button_menu.add_command(label="Save File", command=self.save_new_file)

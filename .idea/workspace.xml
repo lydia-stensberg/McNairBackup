@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c4e8129-d54f-410e-bca7-b63c58359b2b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/McNairDev_local.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/McNairDev_local.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/McNairHtmlProcessor/Main_Handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/McNairHtmlProcessor/Main_Handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/McNairHtmlProcessor/soupaccessories.py" beforeDir="false" afterPath="$PROJECT_DIR$/McNairHtmlProcessor/soupaccessories.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/beautifulsouptest.py" beforeDir="false" afterPath="$PROJECT_DIR$/beautifulsouptest.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,60 +57,44 @@
     <session id="-1943625118">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.6" value="1" />
+          <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="2976" />
+          <entry key="py" value="3580" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2976" />
+          <entry key="Python" value="3580" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="7" />
-          <entry key="py" value="8" />
+          <entry key="html" value="10" />
+          <entry key="py" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="7" />
-          <entry key="Python" value="8" />
+          <entry key="HTML" value="10" />
+          <entry key="Python" value="9" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/Main_Handler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="304" column="41" selection-start-line="304" selection-start-column="41" selection-end-line="304" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-                <marker date="1535330465125" expanded="true" signature="849:3191" ph="..." />
-                <marker date="1535330465125" expanded="true" signature="5758:5797" ph="..." />
-                <marker date="1535330465125" expanded="true" signature="6045:6084" ph="..." />
-                <marker date="1535330465125" expanded="true" signature="6332:6341" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/beautifulsouptest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="84" column="41" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
+            <state relative-caret-position="94">
+              <caret line="80" column="39" lean-forward="true" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -122,23 +102,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/conda/conda/envs/python3_5/Lib/tkinter/__init__.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/Main_Handler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="333" selection-start-line="333" selection-end-line="333" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/soupaccessories.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="175" column="41" lean-forward="true" selection-start-line="175" selection-start-column="41" selection-end-line="175" selection-end-column="41" />
+            <state relative-caret-position="193">
+              <caret line="91" column="38" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
               <folding>
-                <element signature="e#0#29#0" expanded="true" />
-                <marker date="1535329067616" expanded="true" signature="513:518" ph="..." />
+                <element signature="e#0#20#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -155,9 +125,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>wp1dd2d21f_06.png</find>
-      <find>HEIGHT=&quot;1</find>
-      <find>MCN</find>
       <find>HEADER</find>
       <find>MCNA</find>
       <find>HEA</find>
@@ -185,6 +152,9 @@
       <find>single</find>
       <find>we're chan</find>
       <find>edi</find>
+      <find>change_name</find>
+      <find>button-1</find>
+      <find>unit confi</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -207,6 +177,7 @@
         <option value="$PROJECT_DIR$/BSLMC McNair Campus/Files/DomesticWater/DomesticWater.html" />
         <option value="$PROJECT_DIR$/McNairHtmlProcessor/soupaccessories.py" />
         <option value="$PROJECT_DIR$/beautifulsouptest.py" />
+        <option value="$PROJECT_DIR$/McNairDigitalDeliverable/BSLMC McNair Campus/Files/AirSystems/AirSystems.html" />
         <option value="$PROJECT_DIR$/McNairHtmlProcessor/Main_Handler.py" />
       </list>
     </option>
@@ -222,7 +193,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -230,10 +200,42 @@
               <item name="McNairDev_backupLocal" type="b2602c69:ProjectViewProjectNode" />
               <item name="McNairDev_backupLocal" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="McNairDev_backupLocal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="McNairDev_backupLocal" type="462c0819:PsiDirectoryNode" />
+              <item name="McNairDigitalDeliverable" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="McNairDev_backupLocal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="McNairDev_backupLocal" type="462c0819:PsiDirectoryNode" />
+              <item name="McNairDigitalDeliverable" type="462c0819:PsiDirectoryNode" />
+              <item name="BSLMC McNair Campus" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="McNairDev_backupLocal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="McNairDev_backupLocal" type="462c0819:PsiDirectoryNode" />
+              <item name="McNairDigitalDeliverable" type="462c0819:PsiDirectoryNode" />
+              <item name="BSLMC McNair Campus" type="462c0819:PsiDirectoryNode" />
+              <item name="Files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="McNairDev_backupLocal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="McNairDev_backupLocal" type="462c0819:PsiDirectoryNode" />
+              <item name="McNairDigitalDeliverable" type="462c0819:PsiDirectoryNode" />
+              <item name="BSLMC McNair Campus" type="462c0819:PsiDirectoryNode" />
+              <item name="Files" type="462c0819:PsiDirectoryNode" />
+              <item name="HydronicSystems" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="McNairDev_backupLocal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="McNairDev_backupLocal" type="462c0819:PsiDirectoryNode" />
+              <item name="McNairHtmlProcessor" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -487,9 +489,6 @@
     <entry file="file://$PROJECT_DIR$/BSLMC McNair Campus/Files/WaterSystems/HydronicSystems.html" />
     <entry file="file://$PROJECT_DIR$/BSLMC McNair Campus/Files/Electrical/ElectricalSystems.html" />
     <entry file="file://$PROJECT_DIR$/BSLMC McNair Campus/Files/DomesticWater/DomesticWater.html" />
-    <entry file="file://$PROJECT_DIR$/McNairDigitalDeliverable/BSLMC McNair Campus/Files/AirSystems/AirSystems.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/McNairDigitalDeliverable/BSLMC McNair Campus/Index.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -520,6 +519,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/conda/conda/envs/python3_5/Lib/tkinter/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="1557" selection-start-line="1557" selection-end-line="1557" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/soupaccessories.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
@@ -531,17 +537,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/conda/conda/envs/python3_5/Lib/tkinter/__init__.py">
+    <entry file="file://$PROJECT_DIR$/McNairDigitalDeliverable/BSLMC McNair Campus/Files/AirSystems/AirSystems.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="333" selection-start-line="333" selection-end-line="333" />
+        <state relative-caret-position="127">
+          <caret line="90" column="12" lean-forward="true" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/McNairDigitalDeliverable/BSLMC McNair Campus/Files/HydronicSystems/HydronicSystems.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="53" lean-forward="true" selection-start-line="5" selection-start-column="53" selection-end-line="5" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/beautifulsouptest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="84" column="41" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
+        <state relative-caret-position="94">
+          <caret line="80" column="39" lean-forward="true" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
@@ -550,14 +563,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/McNairHtmlProcessor/Main_Handler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="304" column="41" selection-start-line="304" selection-start-column="41" selection-end-line="304" selection-end-column="41" />
+        <state relative-caret-position="193">
+          <caret line="91" column="38" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
-            <marker date="1535330465125" expanded="true" signature="849:3191" ph="..." />
-            <marker date="1535330465125" expanded="true" signature="5758:5797" ph="..." />
-            <marker date="1535330465125" expanded="true" signature="6045:6084" ph="..." />
-            <marker date="1535330465125" expanded="true" signature="6332:6341" ph="..." />
           </folding>
         </state>
       </provider>
