@@ -42,7 +42,6 @@ def new_button_id_from_existing(exiting_button_id):
 
 # TODO: Method that will get images out of a project
 
-
 def find_all_tables(soup):
     return soup.find_all(find_tables)
 
@@ -72,36 +71,30 @@ def change_table_entry_file(table_entry, new_href):
 
 def return_table_contents_by_id(soup, table_id):
     table_list = find_all_tables(soup)
+    table_id = table_id + "M"
     table_contents = []
     for item in table_list:
         if (item['id'] == table_id):
             table_contents = item.find_all("tr")
     return table_contents
 
-file = filedialog.askopenfile(mode="r")
+# file = filedialog.askopenfile(mode="r")
 
-# my_file = open("BSLMC McNair Campus\Files\AirSystems\AirSystems.html", 'r')
+soup = soupaccessories.SoupHandler()
 
-soup = BeautifulSoup(file, 'html.parser')
+table_list = soup.find_all_tables()
+first_button_list = soup.first_buttons()
+second_button_list =  soup.second_buttons()
+third_button_list =  soup.third_buttons()
 
-table_list = find_all_tables(soup)
-
-top_buttons = soupaccessories.first_buttons(soup)
-
-button_list = soup.find_all(soupaccessories.has_class)
-
-# this returns a list of content tags for each table! yay :)
-for item in table_list:
-    table_contents = return_table_contents_by_id(soup, item['id'])
-    print("This is a new table with the id " + item['id'])  # this works
-    print("The items in this table are %s " % return_table_contents_by_id(soup, item['id']))
-
-# soupaccessories.write_list_output(top_buttons)
+print()
+for item in button_list:
 
 
-# output_string = soup.prettify()
-# with open("BSLMC McNair Campus\\New_Table_Index.html", "w+") as output_file:
-#     output_file.write(output_string)
-#     output_file.close()
 
-file.close()
+output_string = soup.instance.soup.prettify()
+with open("BSLMC McNair Campus\\New_Table_Index.html", "w+") as output_file:
+    output_file.write(output_string)
+    output_file.close()
+
+

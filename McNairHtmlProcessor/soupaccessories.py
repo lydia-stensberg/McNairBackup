@@ -39,8 +39,8 @@ class SoupHandler:
             else:
                 messagebox.showerror("New File Canceled", "No new file will be loaded.")
 
-    def __getattr__(self, item):
-        return getattr(self, item)
+    # def __getattr__(self, item):
+    #     return getattr(self, item)
 
 
     def open_comparative_file(self):
@@ -216,6 +216,9 @@ class SoupHandler:
         new_position = int(existing_position) + 34
         new_style = existing_style_string.replace(str(existing_position), str(new_position))
         return new_style
+
+    # def delete_table_entry(self, table_entry):
+    #     table_entry.extrac()
 
 
 def get_blanks(tag):
