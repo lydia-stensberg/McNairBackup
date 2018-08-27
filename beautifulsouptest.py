@@ -84,20 +84,6 @@ file = filedialog.askopenfile(mode="r")
 
 soup = BeautifulSoup(file, 'html.parser')
 
-soup_string = soup.prettify()
-
-old_heading = "McNair Tower 1 Systems Manual"
-
-old_footer = "McNair BSLMC McNair Campus Tower 1 - Facility Assessment & Commissioning"
-
-if soup_string.find(old_footer) > 0 and soup_string.find(old_heading) > 0:
-    print("We've found them both")
-
-
-
-
-
-
 table_list = find_all_tables(soup)
 
 top_buttons = soupaccessories.first_buttons(soup)

@@ -32,6 +32,62 @@ class SoupInterface(tk.Tk):
     new_button2_label = None
     new_button3_label = None
 
+    class _TableEditor(tk.Toplevel):
+        entry_changes = {}
+        new_name = None
+        def __init__(self, table_contents):
+            tk.Toplevel.__init__(self)
+            self.title("Table Editor")
+            self.new_name = tk.StringVar()
+            # Setting up options menu of entries
+            # sample_var = tk.StringVar(self.button2_frame)
+            # sample_var.set("Default Value")
+            choices = []
+            for item in table_contents:
+                # choices.append(item.string)
+                choices.append(item)
+            entries_list = tk.Listbox(self)
+            for item in choices:
+                entries_list.insert(tk.END, item)
+            entries_list.grid(column=1, row=1)
+            tk.Label(self, text="Pick an entry to edit").grid(row=1, column=0)
+            entries_list.bind('<<ListboxSelect>>', self.get_selection)
+            entries_list.bind("<Double-Button-1>", self.get_selection)
+
+            # setting up button to change the table name
+            change_entry_name = tk.Button(self, text="Change Name", command=self.change_name)
+            change_entry_name.grid(column=1, row=2)
+
+            # setting up button to change the table entry
+            change_entry_href = tk.Button(self, text="Change File", command=self.change_file)
+            change_entry_href.grid(column=1, row=3)
+
+            # setting up entry for new name
+
+            self.new_name.trace("w", lambda name, index, mode, sv=self.new_name: tk.CallWrapper(self.new_name))
+            new_name_entry = tk.Entry(self, textvariable=self.new_name)
+            new_name_entry.grid(row=2, column=0)
+
+            # setting up "done" button
+            quit_button = tk.Button(self, text="Quit", command=self.quit)
+            quit_button.grid(row=4, columnspan=2)
+
+            self.mainloop()
+
+        def change_name(self, new_name):
+            selected_entry_name = self.get_selection()
+            self.entry_changes.update({selected_entry_name: self.new_name})
+
+        def change_file(self):
+            selected_entry_name = self.get_selection()
+            new_key = selected_entry_name + " File"
+            self.entry_changes.update({new_key: filedialog.askopenfile(mode="r")})
+
+        def get_selection(self, event):
+            selected_entry = event.widget.get(event.widget.curselection())
+            self.new_name = event.widget.get()
+            return selected_entry
+
     def save_new_file(self):
         if self.base_soup is not None:
             self.base_soup.write_output(False)
@@ -103,23 +159,29 @@ class SoupInterface(tk.Tk):
         self.selected_button = widget.get(selection[0])
         # print("selection:", selection, ": '%s'" % self.selected_button)
 
-    def on_double_1(self,event):
-        widget = event.widget
-        selection = widget.curselection()
-        self.button1_select = widget.get(selection[0])
+    def on_double_1(self, event):
+        self.on_double(event)
+        # widget = event.widget
+        # selection = widget.curselection()
+        # self.button1_select = widget.get(selection[0])
         # print("selection:", selection, ": '%s'" % self.selected_button)
+        return
 
-    def on_double_2(self,event):
-        widget = event.widget
-        selection = widget.curselection()
-        self.button2_select = widget.get(selection[0])
+    def on_double_2(self, event):
+        self.on_double(event)
+        # widget = event.widget
+        # selection = widget.curselection()
+        # self.button2_select = widget.get(selection[0])
         # print("selection:", selection, ": '%s'" % self.selected_button)
+        return
 
-    def on_double_3(self,event):
-        widget = event.widget
-        selection = widget.curselection()
-        self.button2_select = widget.get(selection[0])
+    def on_double_3(self, event):
+        # widget = event.widget
+        # selection = widget.curselection()
+        # self.button2_select = widget.get(selection[0])
         # print("selection:", selection, ": '%s'" % self.selected_button)
+        self.on_double(event)
+        return
 
     def delete_blanks(self):
         if self.base_soup is not None:
@@ -129,7 +191,8 @@ class SoupInterface(tk.Tk):
             pass
 
     def edit_tables_button1(self):
-        self.edit_tables(self.button1_select)
+        contents = ['one', 'two', 'three', 'four']
+        table_editor = self._TableEditor(contents)
         return
 
     def edit_tables_button2(self):
@@ -144,59 +207,6 @@ class SoupInterface(tk.Tk):
     def edit_tables(self, selected_button_name):
         selected_button = self.base_soup.find_button_by_tag(selected_button_name)
 
-        def change_name(new_name):
-            selected_entry_name = get_selection()
-            soupaccessories.change_table_entry_title(selected_entry_name,new_name.get())
-
-        def change_file():
-            selected_entry_name = get_selection()
-            soupaccessories.change_table_entry_file(self.base_soup.find_button_by_tag(selected_entry_name),
-                                                    filedialog.asksaveasfilename())
-
-        def get_selection(event):
-            selected_entry = event.widget.get(event.widget.curselection())
-            selected_button = self.base_soup.find_button_by_tag(selected_entry)
-            return selected_button.string
-
-
-        popup = tk.Toplevel(self)
-        popup.title(self.title)
-
-        # based on button, get table by i.d.
-        # python is typing this as a list not a dictionary?
-        # print(selected_button)
-        table_content = self.base_soup.return_table_contents_by_id(selected_button['id'] + "M")
-        # print(table_content)
-
-        # Setting up options menu of entries
-        # sample_var = tk.StringVar(self.button2_frame)
-        # sample_var.set("Default Value")
-        choices = []
-        for item in table_content:
-            choices.append(item.string)
-        entries_list = tk.Listbox(popup)
-        for item in choices:
-            entries_list.insert(tk.END, item)
-        entries_list.grid(column=1, row=1)
-        tk.Label(popup, text="Pick an entry to edit").grid(row=1, column=0)
-        entries_list.bind('<<ListboxSelect>>', get_selection)
-        entries_list.bind("<Double-Button-1>", get_selection)
-
-        #setting up button to change the table name
-        change_entry_name = tk.Button(popup, text="Change Name", command=change_name)
-        change_entry_name.grid(column = 1, row = 2)
-
-        #setting up button to change the table entry
-        change_entry_href = tk.Button(popup, text="Change File", command=change_file)
-        change_entry_href.grid(column = 1, row = 3)
-
-        #setting up entry for new name
-        new_name = tk.StringVar()
-        new_name.trace("w", lambda name, index, mode, sv=new_name: tk.callback(new_name))
-        new_name_entry = tk.Entry(popup, textvariable=new_name)
-        new_name_entry.grid(row = 2, column = 0)
-
-        popup.mainloop()
         return
 
     def add_new_table_entry(self,event):
@@ -209,11 +219,7 @@ class SoupInterface(tk.Tk):
         delete_button = tk.Button(tkinter_frame, text="Delete Blank Buttons", fg="blue",
                                   command=self.delete_blanks)
         delete_button.grid(row=3, column=1)
-
-
-
         return
-
 
     def __init__(self):
         # Set up interface root and frame
@@ -300,22 +306,22 @@ class SoupInterface(tk.Tk):
 
         # button to change button2 name
         change_button3 = tk.Button(self.button3_frame, text="Change Button Text", fg="blue",
-                                  command=self.change_button3_name)
+                                        command=self.change_button3_name)
         change_button3.grid(row=4, column=1)
 
-        #Button to edit button1 tables
+        # Button to edit button1 tables
         table_edit_button1 = tk.Button(self.button1_frame, text="Edit tables associated with this button", fg="blue",
-                                      command = self.edit_tables_button1)
-        table_edit_button1.grid(row = 5, column = 1)
+                                      command=self.edit_tables_button1)
+        table_edit_button1.grid(row=5, column=1)
 
-        #Button to edit button1 tables
+        # Button to edit button1 tables
         table_edit_button2 = tk.Button(self.button2_frame, text="Edit tables associated with this button", fg="blue",
-                                      command = self.edit_tables_button2)
+                                      command=self.edit_tables_button2)
         table_edit_button2.grid(row = 5, column = 1)
 
-        #Button to edit button1 tables
+        # Button to edit button1 tables
         table_edit_button3 = tk.Button(self.button3_frame, text="Edit tables associated with this button", fg="blue",
-                                      command = self.edit_tables_button3)
+                                      command=self.edit_tables_button3)
         table_edit_button3.grid(row = 5, column = 1)
 
         self.add_required_buttons(self.button2_frame)
@@ -324,11 +330,10 @@ class SoupInterface(tk.Tk):
 
         # Replace File Path Handler
         menu_bar = tk.Menu(self)
-
+        
         top_button_menu = tk.Menu(menu_bar, tearoff=0)
-        initialize_command = top_button_menu.add_command(label="Load Existing File", command=self.initialize_soup)
-        top_button_menu.add_command(label="Save New File", command=self.save_new_file)
-        top_button_menu.add_command(label="Overwrite Existing File", command=self.overwrite_file)
+        top_button_menu.add_command(label="Load Existing File", command=self.initialize_soup)
+        top_button_menu.add_command(label="Save File", command=self.save_new_file)
         top_button_menu.add_separator()
         top_button_menu.add_command(label="Reset Program", command=self.quit)
         menu_bar.add_cascade(label="File Menu", menu=top_button_menu)

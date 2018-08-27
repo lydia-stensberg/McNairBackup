@@ -20,6 +20,7 @@ class SoupHandler:
         def override(self, soup, file):
             self.soup = soup
             self.file = file
+
     # object to represent soup instance! should only be one! should I add a file to the internal class?
     instance = None
     # objects to represent the open files. Mainly stored so that we have access to the file paths.
@@ -146,7 +147,7 @@ class SoupHandler:
                if (is_found):
                    break
                if(child.name=="span" and child.string==button_name):
-                   print("We're changing the button " + child.string + " to " + new_button_name)
+                   # print("We're changing the button " + child.string + " to " + new_button_name)
                    child.string = new_button_name
                    is_found = True
                    break
@@ -178,7 +179,7 @@ class SoupHandler:
     def first_buttons(self):
         return self.instance.soup.find_all(class_="Button1")
 
-    def return_table_contents_by_id(self, table_id):
+    # def return_table_contents_by_id(self, table_id):
         table_list = self.find_all_tables()
         table_contents = []
         for item in table_list:
