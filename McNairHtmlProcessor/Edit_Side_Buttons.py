@@ -10,28 +10,35 @@ def change_button_text(soup, old_button_text):
         print("Somehow you've selected more than one button.")
     return buttons
 
-@Gooey(show_sidebar = True, navigation='SIDEBAR',navigation_title='Choose an Action')
 def main():
-    buttons = soupaccessories.get_side_buttons()
-    desc_message = "Choose a Button Option: " + str(buttons['Side Button Names'])
-    main_parser = GooeyParser(description=desc_message)
-    subparsers = main_parser.add_subparsers()
+    soup = soupaccessories.SoupHandler()
+    change_buttons = []
+    first_buttons = soup.first_buttons()
+    second_buttons = soup.second_buttons()
+    third_buttons = soup.third_buttons()
+    if (len(first_buttons) > 0 and first_buttons[0].text.strip() == "Mechanical"):
+        change_buttons = first_buttons
+    elif(len(second_buttons) > 0 and second_buttons[0].text.strip() == "Mechanical"):
+        change_buttons = second_buttons
+    elif(len(third_buttons) > 0 and third_buttons[0].text.strip() == "Mechanical"):
+        change_buttons = third_buttons
 
-    #adding parser and commands for changing button names
+    new_button_names = []
 
-    name_parser = subparsers.add_parser("ChangeButtonName")
-    name_parser.add_argument("--choosename",metavar="Choose A Button", choices=buttons['Side Button Names'])
-    name_parser.add_argument("--newname",metavar="Enter New Button Text")
+    # print("Change button length is " + str(len(change_buttons)))
+    new_button = soup.create_new_side_button("../FireProtection/FireProtection.html", change_buttons[-1]['id'],change_buttons[-1]['style'],
+                                "Commissioning",button_class=change_buttons[-1]['class'])
 
-    #adding parser and commands for showing top buttons with tables
-    href_parser = subparsers.add_parser("UpdateButtonReferenceFiles")
-    href_parser.add_argument("--chooseref",metavar="Choose A Button", choices=buttons['Side Button Names'])
-    href_parser.add_argument("--select",metavar="Update File Reference", widget='FileChooser')
+    new_button2 = soup.create_new_side_button("../FireProtection/FireProtection.html", change_buttons[-1]['id'],change_buttons[-1]['style'],
+                                "Commissioning",button_class=change_buttons[-1]['class'])
 
-    #TODO: Add function for adding new buttons next to old ones
+    change_buttons[2].insert_after(new_button2)
 
-    #parse arguments from user
-    main_parser.parse_args()
+    new_button.insert_after(new_button2)
+
+    soup.save_file()
+
+
 
 if __name__ == '__main__':
     main()

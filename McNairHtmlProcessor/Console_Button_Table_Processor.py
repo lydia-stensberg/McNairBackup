@@ -136,9 +136,9 @@ for item in button_list:
             elif new_entry == "delete":
                 entry_to_delete = input("Please enter the name of the entry you'd like to delete")
                 for entry in table_contents:
-                    if entry.a.string == entry_to_delete:
+                    if entry.a.string == entry_to_delete or entry.a['title'] == entry_to_delete:
                         entry.td.decompose()
-                        print(entry + " was deleted")
+                        print("An entry was deleted")
             new_entry = input("Would you like to add a new entry to this table or delete an entry? ")
 
 
@@ -146,6 +146,10 @@ for item in button_list:
 
     elif prompt == 'link':
         item.href = input("Enter a website link ")
+
+    elif prompt == 'text':
+        item.string == prompt
+        item['title'] == prompt
 
     else:
         pass

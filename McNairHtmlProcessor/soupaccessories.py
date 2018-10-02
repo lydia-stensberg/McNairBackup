@@ -139,6 +139,31 @@ class SoupHandler:
         self.change_button(self.second_buttons(), button_name, new_button_name)
         return
 
+    def change_button_name(self, button, new_button_name):
+        if (self.is_first_button(button)):
+            self.change_first_button_name(button,new_button_name)
+            return
+
+        elif(self.is_second_button(button)):
+            self.change_second_button_name(button,new_button_name)
+            return
+
+        elif(self.is_third_button(button)):
+            self.change_third_button_name(button, new_button_name)
+            return
+
+        else:
+            raise Error_Handler.Button_DNE("There has been an error figuring out which type of button you have. Button name not changed.")
+
+
+    def is_first_button(self, button):
+        return button['class'] == 'Button1'
+
+    def is_second_button(self,button):
+        return button['class'] == 'Button2'
+
+    def is_third_button(self,button):
+        return button['class'] == 'Button3'
 
     def change_button(self, button_list, button_name, new_button_name):
         is_found = False
@@ -170,7 +195,7 @@ class SoupHandler:
     def create_new_table_entry(self, href, new_name):
         new_entry = self.instance.soup.new_tag(name='tr')
         level1_entry = self.instance.soup.new_tag(name='td')
-        level2_entry = self.instance.soup.new_tag('a', attrs={'href': href})
+        level2_entry = self.instance.soup.new_tag('a', attrs={'href': href, 'target': "_blank"})
         level2_entry.string = new_name
         new_entry.append(level1_entry)
         level1_entry.append(level2_entry)
@@ -191,10 +216,10 @@ class SoupHandler:
         return self.instance.soup.find_all(find_tables)
 
 
-    def create_new_side_button(self, button_href, button_id, button_style, button_string):
-        new_button = self.soup.new_tag('a', attrs={'class': 'Button2', 'href': button_href, 'id': button_id,
-                                              'style': button_style})
-        span_tag = self.soup.new_tag('span')
+    def create_new_side_button(self, button_href, button_id, button_style, button_string, button_class="Button2"):
+        new_button = self.instance.soup.new_tag('a', attrs={'class': button_class, 'href': button_href, 'id': button_id,
+                                              'style': self.new_style_from_existing_style(button_style)})
+        span_tag = self.instance.soup.new_tag('span')
         new_button.append(span_tag)
         span_tag.string = button_string
         return new_button
@@ -217,8 +242,15 @@ class SoupHandler:
         new_style = existing_style_string.replace(str(existing_position), str(new_position))
         return new_style
 
-    # def delete_table_entry(self, table_entry):
-    #     table_entry.extrac()
+    def save_file(self):
+        soupstring = self.instance.soup .prettify()
+        with filedialog.asksaveasfile(mode="w+") as file:
+            file.write(soupstring)
+            file.close()
+
+
+    def delete_table_entry(self, table_entry):
+        table_entry.extract()
 
 
 def get_blanks(tag):
